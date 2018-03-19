@@ -1,22 +1,18 @@
 package com.example.domowe19c;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PalindromCalculator {
 
-    PalindromDatabase pd;
-
-    public PalindromCalculator() {
-        pd = new PalindromDatabase();
-    }
 
     public int maxValCalculator() {
 
         int result = 0;
 
         int num1 = 999;
+
+        int maxVal = 0;
 
         while (num1 >= 100) {
             int num2 = 999;
@@ -25,7 +21,8 @@ public class PalindromCalculator {
                 result = num1 * num2;
 
                 if (palindromTest(result)) {
-                    pd.getPalindromsDB().add(new Palindrom(result, num1, num2));
+                    if (result > maxVal)
+                        maxVal = result;
                 }
 
                 num2--;
@@ -34,9 +31,8 @@ public class PalindromCalculator {
 
         }
 
-        Collections.sort(pd.getPalindromsDB());
 
-        return pd.getPalindromsDB().get(pd.getPalindromsDB().size() - 1).getPalindromNo();
+        return maxVal;
 
 
     }
